@@ -5,7 +5,7 @@ import math
 
 class Solution:
     def kClosest(self, points: list[list[int]], k: int) -> list[list[int]]:
-        result = [] * (k + 1)
+        result = []
         for i in range(len(points)):
             point = points[i]
             z_distance = math.sqrt(abs(point[0]) + abs(point[1]))
@@ -15,14 +15,18 @@ class Solution:
                     'point': point,
                 })
             else:
-                if len(result) <= k:
+                if len(result) <= k + 1:
                     index = len(result)
+                    result.append({
+                        'dis': z_distance,
+                        'point': point
+                    })
                 else:
                     index = k
-                result[index] = {
-                    'dis': z_distance,
-                    'point': point
-                }
+                    result[index] = {
+                        'dis': z_distance,
+                        'point': point
+                    }
                 print(result)
                 while index > 0 and result[index - 1]['dis'] > result[index]['dis']:
                     tmp = result[index - 1]
