@@ -1,2 +1,4 @@
-for i in range(8, 0, -1):
-    print(i)
+from os import walk
+f = []
+for (dirpath, dirnames, filenames) in walk('./'):
+    print(filenames)
